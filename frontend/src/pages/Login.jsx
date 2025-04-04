@@ -65,7 +65,7 @@ const Login = () => {
         if (data.success) {
           localStorage.setItem('token', data.token);
           setToken(data.token);
-          toast.success('Login successful');
+          toast.success('Login successful!');
           navigate('/');
         } else {
           toast.error(data.message);
