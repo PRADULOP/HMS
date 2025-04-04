@@ -21,7 +21,7 @@ const AdminDashboard = () => {
     });
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/admin/analytics?timeframe=${timeframe}`)
+        axios.get(`/api/apis/admin/analytics?timeframe=${timeframe}`)
             .then((res) => {
                 setAnalytics(res.data);
                 setTrendData({

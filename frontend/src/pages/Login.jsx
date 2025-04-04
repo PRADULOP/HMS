@@ -41,7 +41,7 @@ const Login = () => {
     try {
       if (state === 'Sign Up') {
         // Sign Up API call
-        const { data } = await axios.post(`${backendUrl}/api/user/register`, {
+        const { data } = await axios.post(`${backendUrl}/apis/user/register`, {
           name,
           email,
           password,
@@ -57,7 +57,7 @@ const Login = () => {
         }
       } else {
         // Login API call
-        const { data } = await axios.post(`${backendUrl}/api/user/login`, {
+        const { data } = await axios.post(`${backendUrl}/apis/user/login`, {
           email,
           password,
         });

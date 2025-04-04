@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import { getMessages } from '../../api';
 
-const socket = io('http://localhost:3000');
+const socket = io('/api/');
 
 export default function ChatWindow({ role, patientId, patientName, user, appointmentUpdated }) {
   const [chat, setChat] = useState([]);
@@ -43,8 +43,8 @@ export default function ChatWindow({ role, patientId, patientName, user, appoint
   const fetchAppointments = async () => {
     try {
       const endpoint = role === 'doctor'
-        ? `http://localhost:3000/api/appointments/doctor/${user._id}`
-        : `http://localhost:3000/api/appointments/get/${patientId}`;
+        ? `/api/apis/appointments/doctor/${user._id}`
+        : `/api/apis/appointments/get/${patientId}`;
       const res = await axios.get(endpoint);
       setAppointments(res.data);
     } catch (err) {
@@ -81,7 +81,7 @@ export default function ChatWindow({ role, patientId, patientName, user, appoint
     };
 
     try {
-      const response = await axios.post('http://localhost:3000/api/chat/send', messageData);
+      const response = await axios.post('/api/apis/chat/send', messageData);
       setText('');
       setChat((prevChat) => [...prevChat, response.data]);
       socket.emit('sendMessage', response.data);

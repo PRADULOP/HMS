@@ -16,7 +16,7 @@ export default function DoctorChat() {
 
   const fetchAppointments = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/appointments/doctor/${user?.doctor?._id}`);
+      const res = await axios.get(`/api/apis/appointments/doctor/${user?.doctor?._id}`);
       setAppointments(res.data);
     } catch (err) {
       console.error('Error fetching appointments:', err);
@@ -43,7 +43,7 @@ ${prescriptionText}
     `;
 
     try {
-      await axios.post('http://localhost:3000/api/prescription/create', {
+      await axios.post('/api/apis/prescription/create', {
         doctorId: user.doctor._id,
         patientId: selectedPatient,
         prescriptionText: formattedPrescription,
@@ -72,7 +72,7 @@ ${prescriptionText}
       formData.append('doctorId', user.doctor._id);
       formData.append('patientId', selectedPatient);
   
-      const res = await axios.post('http://localhost:3000/api/report/upload', formData, {
+      const res = await axios.post('/api/apis/report/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
   

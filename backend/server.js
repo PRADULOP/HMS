@@ -20,9 +20,9 @@ app.use(cors())
 
 
 // api endpoints
-app.use("/api/user", userRouter)
-app.use("/api/admin", adminRouter)
-app.use("/api/doctor", doctorRouter)
+app.use("/apis/user", userRouter)
+app.use("/apis/admin", adminRouter)
+app.use("/apis/doctor", doctorRouter)
 
 
 app.listen(port, () => console.log(`Server started on PORT:${port}`))

@@ -28,7 +28,7 @@ const UpdateDoctor = () => {
     useEffect(() => {
         const fetchDoctorDetails = async () => {
             try {
-                const { data } = await axios.get(`${backendUrl}/api/admin/doctor/${id}`, {
+                const { data } = await axios.get(`${backendUrl}/apis/admin/doctor/${id}`, {
                     headers: { 
                         'Authorization': `Bearer ${aToken}`
                     }
@@ -83,7 +83,7 @@ const UpdateDoctor = () => {
             formData.append('degree', degree)
             formData.append('address', JSON.stringify({ line1: address1, line2: address2 }))
 
-            const { data } = await axios.put(`${backendUrl}/api/admin/update-doctor/${id}`, formData, { 
+            const { data } = await axios.put(`${backendUrl}/apis/admin/update-doctor/${id}`, formData, { 
                 headers: { 
                     'Authorization': `Bearer ${aToken}`,
                     'Content-Type': 'multipart/form-data',  

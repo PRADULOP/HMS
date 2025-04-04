@@ -16,7 +16,7 @@ const AdminContextProvider = (props) => {
     // Get All Doctors
     const getAllDoctors = async () => {
         try {
-            const { data } = await axios.get(`${backendUrl}/api/admin/all-doctors`, {
+            const { data } = await axios.get(`${backendUrl}/apis/admin/all-doctors`, {
                 headers: {
                     'Authorization': `Bearer ${aToken}`,
                     'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ const AdminContextProvider = (props) => {
     // Change Doctor Availability
     const changeAvailability = async (docId) => {
         try {
-            const { data } = await axios.post(`${backendUrl}/api/admin/change-availability`, 
+            const { data } = await axios.post(`${backendUrl}/apis/admin/change-availability`, 
                 { docId }, 
                 { headers: { 'Authorization': `Bearer ${aToken}` } }
             );
@@ -53,7 +53,7 @@ const AdminContextProvider = (props) => {
       //update doctor
     const updateDoctor = async (docId, updatedDetails) => {
         try {
-            const { data } = await axios.put(`${backendUrl}/api/admin/update-doctor/${docId}`, updatedDetails, {
+            const { data } = await axios.put(`${backendUrl}/apis/admin/update-doctor/${docId}`, updatedDetails, {
                 headers: { 'Authorization': `Bearer ${aToken}` }
             });
     
@@ -72,7 +72,7 @@ const AdminContextProvider = (props) => {
     // Delete Doctor
     const deleteDoctor = async (docId) => {
         try {
-            const { data } = await axios.delete(`${backendUrl}/api/admin/delete-doctor/${docId}`, {
+            const { data } = await axios.delete(`${backendUrl}/apis/admin/delete-doctor/${docId}`, {
                 headers: { 'Authorization': `Bearer ${aToken}` }
             });
             if (data.success) {
@@ -91,7 +91,7 @@ const AdminContextProvider = (props) => {
     // Get All Appointments
     const getAllAppointments = async () => {
         try {
-            const { data } = await axios.get(`${backendUrl}/api/admin/appointments`, {
+            const { data } = await axios.get(`${backendUrl}/apis/admin/appointments`, {
                 headers: { 'Authorization': `Bearer ${aToken}` }
             });
             if (data.success) {
@@ -107,7 +107,7 @@ const AdminContextProvider = (props) => {
     // Cancel Appointment
     const cancelAppointment = async (appointmentId) => {
         try {
-            const { data } = await axios.post(`${backendUrl}/api/admin/cancel-appointment`, 
+            const { data } = await axios.post(`${backendUrl}/apis/admin/cancel-appointment`, 
                 { appointmentId }, 
                 { headers: { 'Authorization': `Bearer ${aToken}` } }
             );
@@ -125,7 +125,7 @@ const AdminContextProvider = (props) => {
     // Get Dashboard Data
     const getDashData = async () => {
         try {
-            const { data } = await axios.get(`${backendUrl}/api/admin/dashboard`, {
+            const { data } = await axios.get(`${backendUrl}/apis/admin/dashboard`, {
                 headers: { 'Authorization': `Bearer ${aToken}` }
             });
             if (data.success) {

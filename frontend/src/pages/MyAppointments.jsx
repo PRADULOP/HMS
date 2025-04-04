@@ -28,7 +28,7 @@ const MyAppointments = () => {
     // Getting User Appointments Data Using API
     const getUserAppointments = async () => {
         try {
-            const { data } = await axios.get(backendUrl + '/api/user/appointments', { headers: { token } })
+            const { data } = await axios.get(backendUrl + '/apis/user/appointments', { headers: { token } })
             setAppointments(data.appointments.reverse())
         } catch (error) {
             console.log(error)
@@ -39,7 +39,7 @@ const MyAppointments = () => {
     // Function to cancel appointment Using API
     const cancelAppointment = async (appointmentId) => {
         try {
-            const { data } = await axios.post(backendUrl + '/api/user/cancel-appointment', { appointmentId }, { headers: { token } })
+            const { data } = await axios.post(backendUrl + '/apis/user/cancel-appointment', { appointmentId }, { headers: { token } })
 
             if (data.success) {
                 toast.success(data.message)
@@ -65,7 +65,7 @@ const MyAppointments = () => {
             handler: async (response) => {
                 console.log(response)
                 try {
-                    const { data } = await axios.post(backendUrl + "/api/user/verifyRazorpay", response, { headers: { token } });
+                    const { data } = await axios.post(backendUrl + "/apis/user/verifyRazorpay", response, { headers: { token } });
                     if (data.success) {
                         navigate('/my-appointments')
                         getUserAppointments()
@@ -83,7 +83,7 @@ const MyAppointments = () => {
     // Function to make payment using razorpay
     const appointmentRazorpay = async (appointmentId) => {
         try {
-            const { data } = await axios.post(backendUrl + '/api/user/payment-razorpay', { appointmentId }, { headers: { token } })
+            const { data } = await axios.post(backendUrl + '/apis/user/payment-razorpay', { appointmentId }, { headers: { token } })
             if (data.success) {
                 initPay(data.order)
             } else {

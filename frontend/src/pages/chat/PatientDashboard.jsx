@@ -29,25 +29,25 @@ export default function PatientDashboard() {
 
   // Fetch doctors
   const fetchDoctors = async () => {
-    const res = await axios.get('http://localhost:3000/api/doctors/all');
+    const res = await axios.get('/api/apis/doctors/all');
     setDoctors(res.data);
   };
 
   // Fetch patient appointments
   const fetchAppointments = async () => {
-    const res = await axios.get(`http://localhost:3000/api/appointments/get/${user?.patient?._id}`);
+    const res = await axios.get(`/api/apis/appointments/get/${user?.patient?._id}`);
     setAppointments(res.data);
   };
 
   // Fetch prescriptions
   const fetchPrescriptions = async () => {
-    const res = await axios.get(`http://localhost:3000/api/prescription/get/${user?.patient?._id}`);
+    const res = await axios.get(`/api/apis/prescription/get/${user?.patient?._id}`);
     setPrescriptions(res.data);
   };
 
   // Fetch reports
   const fetchReports = async () => {
-    const res = await axios.get(`http://localhost:3000/api/report/${user?.patient?._id}`);
+    const res = await axios.get(`/api/apis/report/${user?.patient?._id}`);
     setReports(res.data);
   };
 
@@ -57,7 +57,7 @@ export default function PatientDashboard() {
     if (!doctorId || !date || !time) return alert('⚠️ Please fill all fields.');
 
     try {
-      await axios.post('http://localhost:3000/api/appointments/book', {
+      await axios.post('/api/apis/appointments/book', {
         ...bookingData,
         patientId: user.patient._id
       });
@@ -73,7 +73,7 @@ export default function PatientDashboard() {
   // File download handler (supports both absolute and relative paths)
   const handleDownload = async (fileUrl, fileName) => {
     try {
-      const downloadUrl = fileUrl.startsWith('http') ? fileUrl : `http://localhost:3000${fileUrl}`;
+      const downloadUrl = fileUrl.startsWith('http') ? fileUrl : `/api/${fileUrl}`;
       const response = await axios.get(downloadUrl, { responseType: 'blob' });
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
